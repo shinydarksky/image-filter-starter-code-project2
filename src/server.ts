@@ -33,12 +33,12 @@ import { filterImageFromURL, deleteLocalFiles } from './util/util';
 
 	// Root Endpoint
 	// Displays a simple message to the user
-	app.get("/", async (req, res) => {
+	app.get("/", async (req:express.Request, res:express.Response) => {
 		res.redirect("/filteredimage?image_url=https://i.kym-cdn.com/photos/images/original/002/385/265/77b")
 	});
 
 	// https://i.kym-cdn.com/photos/images/original/002/385/265/77b
-	app.get("/filteredimage", async (req, res) => {
+	app.get("/filteredimage", async (req:express.Request, res:express.Response) => {
 		try {
 			const { image_url } = req.query
 			if (!image_url) return res.status(404).send("Not found image url");
@@ -53,7 +53,7 @@ import { filterImageFromURL, deleteLocalFiles } from './util/util';
 		}
 	});
 
-	app.get("/*", async (req, res) => {
+	app.get("/*", async (req:express.Request, res:express.Response) => {
 		res.send('404 Not found')
 	});
 
